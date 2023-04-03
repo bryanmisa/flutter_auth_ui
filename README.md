@@ -1,16 +1,44 @@
 # flutter_auth_ui
+https://firebase.google.com/docs/flutter/setup?platform=ios
 
-A new Flutter project.
+## Step 1: 
+1. If you haven't already, install the Firebase CLI https://firebase.google.com/docs/cli#setup_update_cli.
+2. Log into Firebase using your Google account by running the following command:
+```
+firebase login 
+```
+3. Install the FlutterFire CLI by running the following command from any directory:
+```
+dart pub global activate flutterfire_cli
+```
 
-## Getting Started
+## Step 2: 
 
-This project is a starting point for a Flutter application.
+// Setting up the firebase
+1. Create firebase database
+2. Run these commands
+``` 
+flutter pub add firebase_core
+```
+```
+flutterfire configure
+```
+3. In your lib/main.dart file, import the Firebase core plugin and the configuration file you generated earlier:
+```
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
+```
+4. Also in your lib/main.dart file, initialize Firebase using the DefaultFirebaseOptions object exported by the configuration file:
+```
+await Firebase.initializeApp(
+  options: DefaultFirebaseOptions.currentPlatform,
+);
+```
+```
+flutter pub add firebase_auth
+```
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+5. Run the command 
+```
+flutter run
+```
