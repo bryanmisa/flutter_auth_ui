@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "826309569862",
+    "project_id": "auth-ui-ac80d",
+    "storage_bucket": "auth-ui-ac80d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:826309569862:android:9ee52dcdffd21907908947",
+        "android_client_info": {
+          "package_name": "com.example.flutter_auth_ui"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "826309569862-loqkenbnc58dlc25ghkfpeug7d46arqj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBhmsnrPD8W-yBfLBE3Ta-KGJPbscpwL20"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "826309569862-loqkenbnc58dlc25ghkfpeug7d46arqj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
