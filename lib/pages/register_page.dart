@@ -5,25 +5,25 @@ import 'package:flutter_auth_ui/components/my_button.dart';
 import 'package:flutter_auth_ui/components/my_textfields.dart';
 import 'package:flutter_auth_ui/components/square_tile.dart';
 
-class LoginPage extends StatefulWidget {
+class RegisterPage extends StatefulWidget {
   final void Function()? onTap;
-  LoginPage({
+  RegisterPage({
     super.key,
     required this.onTap,
   });
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  State<RegisterPage> createState() => _RegisterPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _RegisterPageState extends State<RegisterPage> {
   // text editing controllers
   final emailController = TextEditingController();
 
   final passwordController = TextEditingController();
 
-  // sign user in
-  void signUserIn() async {
+  // sign user up
+  void signUserUp() async {
     // show loading circle
     showDialog(
       context: context,
@@ -33,9 +33,9 @@ class _LoginPageState extends State<LoginPage> {
         );
       },
     );
-    // try sign in
+    // try creating the user
     try {
-      await FirebaseAuth.instance.createUserWithEmailAndPassword(
+      await FirebaseAuth.instance.signInWithEmailAndPassword(
         email: emailController.text,
         password: passwordController.text,
       );
@@ -81,30 +81,6 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  // OLD Popup Message for alerting the user for failed login
-  // wrong email message popup
-  // void wrongEmailMessage() {
-  //   showDialog(
-  //     context: context,
-  //     builder: (context) {
-  //       return const AlertDialog(
-  //         title: Text('Incorrect Email'),
-  //       );
-  //     },
-  //   );
-  // }
-
-  // void wrongPasswordMessage() {
-  //   showDialog(
-  //     context: context,
-  //     builder: (context) {
-  //       return const AlertDialog(
-  //         title: Text('Incorrect Password'),
-  //       );
-  //     },
-  //   );
-  // }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -118,18 +94,18 @@ class _LoginPageState extends State<LoginPage> {
               children: [
                 // logo
                 const SizedBox(
-                  height: 50,
+                  height: 25,
                 ),
                 const Icon(
                   Icons.lock,
                   size: 100,
                 ),
                 const SizedBox(
-                  height: 50,
+                  height: 25,
                 ),
-                // welcome back, you've been missed!
+                // let create and account for you
                 Text(
-                  'Welcome Back, you\'ve been missed!',
+                  'Let\'s create an account for you!',
                   style: TextStyle(
                     color: Colors.grey[800],
                     fontSize: 16,
@@ -156,6 +132,17 @@ class _LoginPageState extends State<LoginPage> {
                 const SizedBox(
                   height: 10,
                 ),
+
+                // confirm password
+                MyTextField(
+                  controller: passwordController,
+                  hintText: 'Confirm Password',
+                  obscureText: true,
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+
                 // forgot password
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 25.0),
@@ -176,11 +163,11 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 // sign in button
                 MyButton(
-                  text: 'Sign In',
-                  onTap: signUserIn,
+                  text: 'Register now',
+                  onTap: signUserUp,
                 ),
                 const SizedBox(
-                  height: 50,
+                  height: 25,
                 ),
                 // or continue with
                 Padding(
@@ -241,7 +228,7 @@ class _LoginPageState extends State<LoginPage> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      'Not a member?',
+                      'Alredy have an account?',
                       style: TextStyle(
                         color: Colors.grey[700],
                       ),
@@ -252,7 +239,7 @@ class _LoginPageState extends State<LoginPage> {
                     GestureDetector(
                       onTap: widget.onTap,
                       child: const Text(
-                        'Register now',
+                        'Login now',
                         style: TextStyle(
                           color: Colors.blue,
                           fontWeight: FontWeight.bold,
