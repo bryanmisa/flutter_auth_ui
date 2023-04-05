@@ -35,7 +35,7 @@ class _LoginPageState extends State<LoginPage> {
     );
     // try sign in
     try {
-      await FirebaseAuth.instance.createUserWithEmailAndPassword(
+      await FirebaseAuth.instance.signInWithEmailAndPassword(
         email: emailController.text,
         password: passwordController.text,
       );
@@ -59,6 +59,7 @@ class _LoginPageState extends State<LoginPage> {
       //   // show wrong password to user
       //   showErrorMessage();
       // }
+
     }
   }
 

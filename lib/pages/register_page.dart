@@ -7,7 +7,7 @@ import 'package:flutter_auth_ui/components/square_tile.dart';
 
 class RegisterPage extends StatefulWidget {
   final void Function()? onTap;
-  RegisterPage({
+  const RegisterPage({
     super.key,
     required this.onTap,
   });
@@ -19,8 +19,8 @@ class RegisterPage extends StatefulWidget {
 class _RegisterPageState extends State<RegisterPage> {
   // text editing controllers
   final emailController = TextEditingController();
-
   final passwordController = TextEditingController();
+  final confirmPasswordController = TextEditingController();
 
   // sign user up
   void signUserUp() async {
@@ -28,17 +28,23 @@ class _RegisterPageState extends State<RegisterPage> {
     showDialog(
       context: context,
       builder: (context) {
-        return Center(
+        return const Center(
           child: CircularProgressIndicator(),
         );
       },
     );
     // try creating the user
     try {
-      await FirebaseAuth.instance.signInWithEmailAndPassword(
-        email: emailController.text,
-        password: passwordController.text,
-      );
+      // check if password is confirmed
+      if (passwordController.text == confirmPasswordController.text) {
+        await FirebaseAuth.instance.createUserWithEmailAndPassword(
+          email: emailController.text,
+          password: passwordController.text,
+        );
+      } else {
+        // show error message
+        showErrorMessage("Password do not match");
+      }
       // pop the loading circle
       Navigator.pop(context);
     } on FirebaseAuthException catch (e) {
@@ -135,7 +141,7 @@ class _RegisterPageState extends State<RegisterPage> {
 
                 // confirm password
                 MyTextField(
-                  controller: passwordController,
+                  controller: confirmPasswordController,
                   hintText: 'Confirm Password',
                   obscureText: true,
                 ),

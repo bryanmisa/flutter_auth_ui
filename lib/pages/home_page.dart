@@ -23,8 +23,8 @@ class HomePage extends StatelessWidget {
       ),
       body: Center(
         child: Text(
-          'You are logged in as: ' + currentuser.email!,
-          style: TextStyle(fontSize: 20.0),
+          'You are logged in as: ${currentuser.email!}',
+          style: const TextStyle(fontSize: 20.0),
         ),
       ),
     );
